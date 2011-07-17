@@ -1,6 +1,6 @@
 <h1>Login</h1>
-<% form_for @user_session do |f| %>
-  <%= f.error_messages %>
+
+<%= form_for @user_session, :as => :user_session, :url => { :action => "create" } do |f| %>
   <p>
     <%= f.label :username %><br />
     <%= f.text_field :username %>
