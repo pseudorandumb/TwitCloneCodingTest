@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :require_no_user, :only => [:new, :create]
+  before_filter :require_user, :only => [:show, :edit, :update]
   def index
     @users = User.all #find(params[:id])
   end
@@ -10,10 +12,12 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
   end
-  before_filter :authenticate
   
   def home
-    User.find_by_username(params[:username])
+    @tweets=current_user.tweets.all
+    @user = current_user #User.find_by_username(params[:username])
+    @tweet = Tweet.new
+    #redirect_to @user
   end
 
   def edit
@@ -41,10 +45,5 @@ class UsersController < ApplicationController
     else
       render :action => "edit"
     end
-  end
-  
-  protected
-  def authenticate
-    
   end
 end

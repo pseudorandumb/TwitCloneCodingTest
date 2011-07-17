@@ -1,10 +1,20 @@
 Twotclone::Application.routes.draw do
+  #get "tweet/new"
+
+  #get "tweet/create"
+  ###resources :tweets
+  #get "tweet/destroy"
+  #match "users/:id/tweets/new" => "user_tweets_path"
   match "login" => "user_sessions#new"
   resources :user_sessions
   match "logout" => "user_sessions#destroy"
   match ":username" => 'users#home'
   root :to => "users#index"
-  resources :users
+  #resources :users, :has_many => :tweets
+  resources :users do
+    resources :tweets
+  end
+
   #get "users/index"
   #get "users/new"
   #get "users/show"
