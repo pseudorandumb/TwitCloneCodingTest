@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
+  helper UsersHelper
   before_filter :require_no_user, :only => [:new, :create]
-  before_filter :require_user, :only => [:show, :edit, :update]
+  before_filter :require_user, :only => [:show, :edit, :update, :home]
   def index
     @users = User.all #find(params[:id])
   end
@@ -14,9 +15,10 @@ class UsersController < ApplicationController
   end
   
   def home
-    @tweets=current_user.tweets.all
-    @user = current_user #User.find_by_username(params[:username])
-    @tweet = Tweet.new
+    #@tweets=current_user.tweets.all
+    @user = User.find_by_username(params[:username])#current_user
+    @tweet = Tweet.new #@user.tweets.build #Tweet.new #current_user.tweets.new #Tweet.new
+    @tweets = @user.tweets.order('created_at DESC').all
     #redirect_to @user
   end
 

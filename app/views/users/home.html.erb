@@ -4,3 +4,5 @@
     <%= f.submit "Share" %>
   </div>  
 <% end %>
+<%= render :partial => 'feed' %>
+<%= render :partial => 'info', :locals=>{:user=>@user}%>

@@ -4,16 +4,12 @@ class TweetsController < ApplicationController
   end
 
   def create
-    @tweet = Tweet.new(params[:tweet])
+    @tweet = current_user.tweets.new(params[:tweet])
     if @tweet.save
-         #redirect_to(user_path, :notice => 'User was successfully created.')
-         redirect_to root_url
-         puts "saved"
+         redirect_to(:back, :notice => 'User was successfully created.')
       else
-        #render :action => "new"
-        puts "bleh"
+         redirect_to root_url
       end
-    #redirect_to root_url
   end
 
   def destroy

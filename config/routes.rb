@@ -1,4 +1,10 @@
 Twotclone::Application.routes.draw do
+  get "follows/new"
+
+  get "follows/create"
+
+  get "follows/destroy"
+
   #get "tweet/new"
 
   #get "tweet/create"

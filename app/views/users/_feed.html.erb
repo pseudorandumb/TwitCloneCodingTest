@@ -1,0 +1,13 @@
+<table>
+<% @tweets.each do |tweet|%>
+<tr>
+<td>
+<%= link_to tweet.user.username, tweet.user.username%>
+</td>
+<td>
+<%= tweet.body %>	
+</td>
+</tr>
+
+<% end %>
+</table>

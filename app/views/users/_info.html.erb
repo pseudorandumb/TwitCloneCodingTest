@@ -1,0 +1,6 @@
+<div id="user_info">
+  <div id="username"><%= @user.username %></div>
+  <div id="email"><%= @user.email %></div>
+  <div id="bio"><%= "About Me: "+@user.bio if @user.bio.present?  %></div>
+  <div id="follow"><%= link_to(current_user==@user ? "" : true ? "Follow" : "Un-Follow", root_url) %></div>
+</div>
