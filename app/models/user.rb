@@ -10,6 +10,6 @@ class User < ActiveRecord::Base
   has_many :tweets
   accepts_nested_attributes_for :tweets # , :following
   has_many :followers, :class_name => 'Follow', :foreign_key => 'user_id'
-  has_many :following, :class_name => 'Follow', :foreign_key => 'follower_id'
+  has_many :followings, :class_name => 'Follow', :foreign_key => 'follow_id'
 end
 
