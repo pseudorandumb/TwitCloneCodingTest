@@ -29,6 +29,7 @@ class UsersController < ApplicationController
   def home
     #@tweets=current_user.tweets.all
     @user = User.find_by_username(params[:username])#current_user
+    @followings=@user.followers.find_by_follow_id(@user.id)
     if @user.present?
     @tweet = Tweet.new #@user.tweets.build #Tweet.new #current_user.tweets.new #Tweet.new
     @tweets = @user.tweets.order('created_at DESC').all
