@@ -5,9 +5,9 @@ class FollowsController < ApplicationController
   end
 
   def create
-    @follow = current_user.followers.build(params[:follow])   #Follow.new(params[:follow])
+    @follow = current_user.followings.build(params[:follow]) #current_user.followers.build(params[:follow])
     if @follow.save!
-      logger.debug("test")
+      #logger.debug("test")
       redirect_to(root_url, :notice => 'User followed!')
     else
       render :text => "FAIL"
@@ -15,6 +15,8 @@ class FollowsController < ApplicationController
   end
 
   def destroy
+    @follow = current_user.followings.find_by_follow_id(params[:id]) #Follow.find(params[:id])
+    @follow.destroy
   end
 
 end

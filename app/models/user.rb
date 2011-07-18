@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   validates_presence_of :password, :email, :username
   has_many :tweets
   accepts_nested_attributes_for :tweets # , :following
-  has_many :followers, :class_name => 'Follow', :foreign_key => 'user_id'
-  has_many :followings, :class_name => 'Follow', :foreign_key => 'follow_id'
+  has_many :followers, :class_name => 'Follow', :foreign_key => 'follow_id'
+  has_many :followings, :class_name => 'Follow', :foreign_key => 'user_id'
 end
 

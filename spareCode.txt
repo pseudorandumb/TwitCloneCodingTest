@@ -2,3 +2,9 @@
   <div id="follows"><%= link_to current_user==@user ? "" : true ? "Follow" : "Un-Follow", create_user_follows_path(@user) %></div>
 
 <%= render :partial => 'info' %>
+
+
+***
+<div id="follow"><%= link_to follow_toggle, follow_toggle_logic %></div>
+<div id="follow"><%= link_to follow_toggle, user_follows_path(@user,{:follow=>{:follow_id=>@user.id}}),:method => :post %></div>
+***

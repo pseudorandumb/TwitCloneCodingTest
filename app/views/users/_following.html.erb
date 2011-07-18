@@ -1,11 +1,11 @@
+<% if @user.followings.exists?%>
 <table>
 <th>Following:</th>
 <% @user.followings.each do |follow|%>
-<tr>
-  <td>
+<tr><td>
     <%= link_to follow.user.username, follow.user.username %>	
   </td>
 </tr>
-
 <% end %>
 </table>
+<% end %>

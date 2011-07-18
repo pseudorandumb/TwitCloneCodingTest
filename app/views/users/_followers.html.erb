@@ -3,9 +3,10 @@
 <% @user.followers.each do |follow|%>
 <tr>
   <td>
-    <%= link_to follow.user.username, follow.user.username %>	
+  	
+    <%= link_to(follow.user.username , follow.user.username)%>	
+    
   </td>
 </tr>
-
 <% end %>
 </table>
