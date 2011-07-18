@@ -14,7 +14,8 @@ class ApplicationController < ActionController::Base
     
     def follow_toggle_logic
       #return "user_follow_path(@user.id, @follow.id), :confirm => 'Are you sure?', :method => :delete" if current_user.followings.find_by_user_id(@user.id)!=nil
-      return "user_follows_path(@user,{:follow=>{:follow_id=>@user.id}}),:method => :post"
+      #return "user_follows_path(@user,{:follow=>{:follow_id=>@user.id}}),:method => :post"
+      return user_follows_path(current_user, {:follow=>{:follow_id=>@user.id}})
     end
 
     def current_user_session

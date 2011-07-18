@@ -1,11 +1,11 @@
 <div id="user_info">
+  <% if current_user.followings.find_by_user_id(@user.id)!=nil %>FOLLOWING:<%=current_user.followings.find_by_user_id(@user.id).user.username-%> <%end%>
+  <div id="follow"><%= link_to follow_toggle, follow_toggle_logic, :method => :post %></div>
+  <div id="un-follow"><%= link_to "delete", user_follow_path(current_user, @user), :confirm => 'Are you sure?', :method => :delete %></div>
+  <div id="editUser"><%= link_to("Edit Profile", edit_user_path(current_user)) if current_user==@user%></div>
   <div id="username"><h1><%= @user.username %></h1></div>
   <div id="email"><%= @user.email %></div>
   <div id="bio"><%= "About Me: "+@user.bio if @user.bio.present?  %></div>
-
-  <div id="follow"><%= link_to follow_toggle, user_follows_path(current_user, {:follow=>{:follow_id=>@user.id}}),:method => :post %></div>
-  <div id="follow"><%= link_to "delete", user_follow_path(current_user, @user), :confirm => 'Are you sure?', :method => :delete %></div>
-  <div id="editUser"><%= link_to("Edit Profile", edit_user_path(current_user)) if current_user==@user%></div>
   <div id="following"><%= render :partial => 'following' %></div>
-  <div id="following"><%= render :partial => 'followers' %></div>
+  <div id="followers"><%= render :partial => 'followers' %></div>
 </div>

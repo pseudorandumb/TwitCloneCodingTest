@@ -8,3 +8,20 @@
 <div id="follow"><%= link_to follow_toggle, follow_toggle_logic %></div>
 <div id="follow"><%= link_to follow_toggle, user_follows_path(@user,{:follow=>{:follow_id=>@user.id}}),:method => :post %></div>
 ***
+
+
+user_follows_path(current_user, {:follow=>{:follow_id=>@user.id}}
+
+***INDEX TWEETS
+<table>
+<% @tweets.each do |tweet|%>
+<tr>
+	<td>
+		<%= tweet.user.username%>: 
+	</td>
+	<td>
+		<%= tweet.body%>
+	</td>
+</tr>
+<% end %>
+</table>

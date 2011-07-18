@@ -5,11 +5,9 @@ class TweetsController < ApplicationController
 
   def create
     @tweet = current_user.tweets.build(params[:tweet])
-    if @tweet.save!
-         redirect_to :back
-      else
-         redirect_to root_url
-      end
+    if @tweet.save
+      redirect_to :back
+    end
   end
 
   def destroy

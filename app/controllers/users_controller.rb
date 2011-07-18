@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => [:show, :edit, :update]
   def index
-    @users = User.all #find(params[:id])
+    #@users = User.all #find(params[:id])
+    @tweets = Tweet.order('created_at ASC').all
   end
 
   def new
@@ -11,9 +12,12 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(params[:user])
+    puts "TEST"
     if @user.save
+      puts "TEST2"
       redirect_to(@user, :notice => 'User was successfully created.')
     else
+      puts "TEST3"
       render :action => "new"
     end
   end
@@ -37,7 +41,7 @@ class UsersController < ApplicationController
     @user = current_user#  User.find #(params[:id])
   end
   
-  def destory
+  def destroy
     @user = User.find(params[:id])
     @user.destroy
   end
