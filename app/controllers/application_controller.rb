@@ -2,9 +2,12 @@ class ApplicationController < ActionController::Base
   helper :Users
   require 'authlogic'
   protect_from_forgery
-  helper_method :current_user_session, :current_user
+  helper_method :current_user_session, :current_user, :follow_toggle
 
   private
+    def follow_toggle
+      return current_user==@user ? "" : true ? "Follow" : "Un-Follow"     
+    end  
     def current_user_session
       return @current_user_session if defined?(@current_user_session)
       @current_user_session = UserSession.find

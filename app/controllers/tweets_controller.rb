@@ -4,9 +4,9 @@ class TweetsController < ApplicationController
   end
 
   def create
-    @tweet = current_user.tweets.new(params[:tweet])
-    if @tweet.save
-         redirect_to(:back, :notice => 'User was successfully created.')
+    @tweet = current_user.tweets.build(params[:tweet])
+    if @tweet.save!
+         redirect_to :back
       else
          redirect_to root_url
       end

@@ -1,13 +1,21 @@
 class UsersController < ApplicationController
-  helper UsersHelper
   before_filter :require_no_user, :only => [:new, :create]
-  before_filter :require_user, :only => [:show, :edit, :update, :home]
+  before_filter :require_user, :only => [:show, :edit, :update]
   def index
     @users = User.all #find(params[:id])
   end
 
   def new
     @user=User.new
+  end
+  
+  def create
+    @user = User.new(params[:user])
+    if @user.save
+      redirect_to(@user, :notice => 'User was successfully created.')
+    else
+      render :action => "new"
+    end
   end
 
   def show
@@ -27,15 +35,6 @@ class UsersController < ApplicationController
 
   def edit
     @user = current_user#  User.find #(params[:id])
-  end
-  
-  def create
-    @user = User.new(params[:user])
-      if @user.save
-         redirect_to(@user, :notice => 'User was successfully created.')
-      else
-        render :action => "new"
-      end
   end
   
   def destory

@@ -8,8 +8,8 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username, :email
   validates_presence_of :password, :email, :username
   has_many :tweets
-  accepts_nested_attributes_for :tweets
-  has_many :followers, :class_name => 'Follows', :foreign_key => 'user_id'
-  has_many :following, :class_name => 'Follows', :foreign_key => 'id'
+  accepts_nested_attributes_for :tweets # , :following
+  has_many :followers, :class_name => 'Follow', :foreign_key => 'user_id'
+  has_many :following, :class_name => 'Follow', :foreign_key => 'follower_id'
 end
 

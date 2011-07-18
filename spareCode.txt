@@ -1,0 +1,4 @@
+  <div id="follow"><%= link_to current_user==@user ? "" : true ? "Follow" : "Un-Follow", :follow, :id=>@user.id, :user_id=>"1" %></div>
+  <div id="follows"><%= link_to current_user==@user ? "" : true ? "Follow" : "Un-Follow", create_user_follows_path(@user) %></div>
+
+<%= render :partial => 'info' %>
