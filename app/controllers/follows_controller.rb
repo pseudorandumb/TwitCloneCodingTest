@@ -8,8 +8,6 @@ class FollowsController < ApplicationController
     #@follow = current_user.followings.build(params[:follow]) #current_user.followers.build(params[:follow])
     @follow = Follow.new(params[:follow])
     if @follow.save!
-      #logger.debug("test")
-      #redirect_to(root_url, :notice => 'User followed!')
       redirect_to :back
     else
       render :text => "FAIL"
