@@ -25,3 +25,7 @@ user_follows_path(current_user, {:follow=>{:follow_id=>@user.id}}
 </tr>
 <% end %>
 </table>
+
+
+***asdflkjh***
+<div id="un-follow"><%= link_to "delete", user_follow_path(current_user, @user.id), {:confirm => 'Are you sure?', :method => :delete} %></div>

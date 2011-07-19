@@ -1,6 +1,6 @@
 <table>
 <th>Followers:</th>
-<% @user.followers.each do |follow|%>
+<% @user.followings.each do |follow|%>
 <tr>
   <td>
     <%= link_to(follow.user.username , follow.user.username)%>    

@@ -29,10 +29,11 @@ class UsersController < ApplicationController
   def home
     #@tweets=current_user.tweets.all
     @user = User.find_by_username(params[:username])#current_user
-    @followings=@user.followers.find_by_follow_id(@user.id)
+    @unique_follow=Follow.find_by_user_id_and_follow_id(current_user.id,@user.id)
+    ######@followings=User.joins(:follow). #Follow.find_all_by_user_id(@user.id)#@user.followings #ers.find_by_follow_id(@user.id)
     if @user.present?
     @tweet = Tweet.new #@user.tweets.build #Tweet.new #current_user.tweets.new #Tweet.new
-    @tweets = @user.tweets.order('created_at DESC').all
+    @tweets = @user.tweets.order('created_at DESC').all #Used to display Feed
     else
     redirect_to root_url
     end

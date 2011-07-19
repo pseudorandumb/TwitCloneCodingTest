@@ -1,7 +1,9 @@
 <div id="user_info">
-  <% if current_user.followings.find_by_user_id(@user.id)!=nil %>FOLLOWING:<%=current_user.followings.find_by_user_id(@user.id).user.username-%> <%end%>
+  <% if @unique_follow!=nil %>
+  <div id="un-follow"><%= link_to "Unfollow", user_follow_path(current_user.id,@unique_follow.id), :confirm => 'Are you sure?', :method => :delete %></div>
+  <% else %>
   <div id="follow"><%= link_to follow_toggle, follow_toggle_logic, :method => :post %></div>
-  <div id="un-follow"><%= link_to "delete", user_follow_path(current_user, @user), :confirm => 'Are you sure?', :method => :delete %></div>
+  <%end%>
   <div id="editUser"><%= link_to("Edit Profile", edit_user_path(current_user)) if current_user==@user%></div>
   <div id="username"><h1><%= @user.username %></h1></div>
   <div id="email"><%= @user.email %></div>
