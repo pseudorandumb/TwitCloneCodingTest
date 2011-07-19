@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => [:show, :edit, :update]
   def index
-    #@users = User.all #find(params[:id])
     @tweets = Tweet.order('created_at DESC').all
   end
 
@@ -25,29 +24,17 @@ class UsersController < ApplicationController
   
   def home
     @user = User.find_by_username(params[:username])#current_user
-
-    
-    
     if @user.present?
-      
-      @unique_follow=Follow.find_by_user_id_and_follow_id(current_user.id,@user.id)
-    
+    @unique_follow=Follow.find_by_user_id_and_follow_id(current_user.id,@user.id)
     f=Follow.find_all_by_user_id(@user.id)
     @following=User.find(f.collect { |u| u.follow_id })
-      
-      
     @tweet = Tweet.new #@user.tweets.build #Tweet.new #current_user.tweets.new #Tweet.new
-      
-    #@tweets = @user.tweets.order('created_at DESC').all #Used to display Feed
     @tweets = Tweet.find_all_by_stream_id(@user.id) | Tweet.find_all_by_user_id(@user.id)  #Used to display Feed
-    #WORKS#@tweets += Tweet.find_all_by_user_id(6)
-    #@tweets += Tweet.find()
       if current_user==@user
         x=@following.collect {|u| u.tweets}.flatten
         @tweets += x
       end
     @tweets.sort! { |a,b| b.created_at <=> a.created_at }
-    
     else
       redirect_to root_url
     end

@@ -1,11 +1,9 @@
 class FollowsController < ApplicationController
   def new
-    #self.create
     @follow= Follow.new
   end
 
   def create
-    #@follow = current_user.followings.build(params[:follow]) #current_user.followers.build(params[:follow])
     @follow = Follow.new(params[:follow])
     if @follow.save!
       redirect_to :back

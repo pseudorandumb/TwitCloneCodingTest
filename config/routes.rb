@@ -1,18 +1,4 @@
 Twotclone::Application.routes.draw do
-  #get "follows/new"
-
-  #get "follows/create"
-
-  #get "follows/destroy"
-
-  #get "tweet/new"
-
-  #get "tweet/create"
-  ###resources :tweets
-  #get "tweet/destroy"
-  #match "users/:id/tweets/new" => "user_tweets_path"
-  #match "follow#create", :to => 'follows#create' #, :as => "logout"
-  #match 'users/:id/follows/:id' => 'users#home'
   resources :users  do
     resources :tweets, :follows
   end
@@ -21,12 +7,6 @@ Twotclone::Application.routes.draw do
   match "logout" => "user_sessions#destroy"
   match ":username" => 'users#home'
   root :to => "users#index"
-  #resources :users, :has_many => :tweets
-  #resources :users #do
-    #resources :tweets, :follows
-  #end
-  #resources :follow
-
   
   
   # The priority is based upon order of creation:
