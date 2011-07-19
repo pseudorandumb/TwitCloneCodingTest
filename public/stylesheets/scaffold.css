@@ -1,3 +1,10 @@
+#avatar{
+		position:relative;
+	max-height: 60px;
+	max-width: 60px;
+	float: left;
+	margin-right:16px;
+}
 #user_info {
 	position:absolute;
 	top: 25px;

@@ -6,7 +6,8 @@ gem 'rails', '3.0.0'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'rails3-generators'
 gem 'sqlite3-ruby', :require => 'sqlite3'
-gem 'authlogic' 
+gem 'authlogic'
+gem 'paperclip'
 group :test, :development do
   gem "rspec-rails", "~> 2.6"
 end

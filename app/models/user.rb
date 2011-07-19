@@ -11,5 +11,9 @@ class User < ActiveRecord::Base
   #########accepts_nested_attributes_for :tweets # , :following
   has_many :followers, :class_name => 'Follow', :foreign_key => 'user_id'    #'follow_id'
   has_many :followings, :class_name => 'Follow', :foreign_key => 'follow_id' #'user_id'
+  #Avatar stuff:
+  has_attached_file :avatar
+  validates_attachment_size :avatar, :less_than => 3.megabytes
+  validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png', 'image/bmp']
 end
 

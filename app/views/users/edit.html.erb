@@ -9,7 +9,7 @@
       </ul>
     </div>
 <% end %>
-<%= form_for(@user) do |f| %>
+<%= form_for @user, :html => { :multipart => true } do |f| %>
   <div class="field">
     <%= f.label :full_name %><br />
     <%= f.text_field :name %>
@@ -29,6 +29,9 @@
   <div class="field">
     <%= f.label "About You" %><br />
     <%= f.text_area :bio %>
+  </div>
+  <div class="field">
+    <%= f.file_field :avatar %>
   </div>
   <div class="actions">
     <%= f.submit %>
