@@ -1,9 +1,9 @@
 <% if @user.followers!=nil%>
 <table>
 <th>Following:</th>
-<% @user.followers.each do |follow|%>
+<% @following.each do |follow|%>
 <tr><td>
-    <%= link_to follow.user.username, follow.user.username %>	
+    <%= link_to follow.username, follow.username %>	
   </td>
 </tr>
 <% end %>

@@ -1,2 +1,13 @@
 <h1>TwitClone</h1>
-
+<table>
+<% @tweets.each do |tweet|%>
+<tr>
+	<td>
+		<%= tweet.user.username%>: 
+	</td>
+	<td>
+		<%= tweet.body%>
+	</td>
+</tr>
+<% end %>
+</table>

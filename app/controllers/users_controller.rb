@@ -12,12 +12,9 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(params[:user])
-    puts "TEST"
     if @user.save
-      puts "TEST2"
-      redirect_to(@user, :notice => 'User was successfully created.')
+      redirect_to(root_url, :notice => 'User was successfully created.')
     else
-      puts "TEST3"
       render :action => "new"
     end
   end
@@ -30,12 +27,15 @@ class UsersController < ApplicationController
     #@tweets=current_user.tweets.all
     @user = User.find_by_username(params[:username])#current_user
     @unique_follow=Follow.find_by_user_id_and_follow_id(current_user.id,@user.id)
-    ######@followings=User.joins(:follow). #Follow.find_all_by_user_id(@user.id)#@user.followings #ers.find_by_follow_id(@user.id)
     if @user.present?
     @tweet = Tweet.new #@user.tweets.build #Tweet.new #current_user.tweets.new #Tweet.new
-    @tweets = @user.tweets.order('created_at DESC').all #Used to display Feed
+    #@tweets = @user.tweets.order('created_at DESC').all #Used to display Feed
+    @tweets = Tweet.find_all_by_stream_id(@user.id) | Tweet.find_all_by_user_id(@user.id)  #Used to display Feed
+    @tweets.sort! { |a,b| b.created_at <=> a.created_at }
+    f=Follow.find_all_by_user_id(@user.id)
+    @following=User.find(f.collect { |u| u.follow_id })
     else
-    redirect_to root_url
+      redirect_to root_url
     end
   end
 
