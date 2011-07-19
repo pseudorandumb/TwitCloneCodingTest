@@ -26,12 +26,16 @@ class UsersController < ApplicationController
   def home
     @user = User.find_by_username(params[:username])#current_user
 
-    @unique_follow=Follow.find_by_user_id_and_follow_id(current_user.id,@user.id)
+    
+    
+    if @user.present?
+      
+      @unique_follow=Follow.find_by_user_id_and_follow_id(current_user.id,@user.id)
     
     f=Follow.find_all_by_user_id(@user.id)
     @following=User.find(f.collect { |u| u.follow_id })
-    
-    if @user.present?
+      
+      
     @tweet = Tweet.new #@user.tweets.build #Tweet.new #current_user.tweets.new #Tweet.new
       
     #@tweets = @user.tweets.order('created_at DESC').all #Used to display Feed

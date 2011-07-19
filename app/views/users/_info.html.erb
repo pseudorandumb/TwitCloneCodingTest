@@ -6,7 +6,7 @@
   <%end%>
   <div id="editUser"><%= link_to("Edit Profile", edit_user_path(current_user)) if current_user==@user%></div>
   <div id="username"><h1><%= @user.username %></h1></div>
-  <div id="avatar"><%= image_tag @user.avatar.url, {:height=>"80px", :width=>"65px"} unless @user.avatar.url.nil? %></div>
+  <div id="avatar"><%= image_tag @user.avatar.url, {:height=>"80px", :width=>"65px"} unless @user.avatar.url=="/avatars/original/missing.png" %></div>
   <div id="email"><%= @user.email %></div>
   <div id="bio"><%= "About Me: "+@user.bio if @user.bio.present?  %></div>
   <div id="following"><%= render :partial => 'following' %></div>

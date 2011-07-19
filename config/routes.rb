@@ -13,7 +13,7 @@ Twotclone::Application.routes.draw do
   #match "users/:id/tweets/new" => "user_tweets_path"
   #match "follow#create", :to => 'follows#create' #, :as => "logout"
   #match 'users/:id/follows/:id' => 'users#home'
-  resources :users do
+  resources :users  do
     resources :tweets, :follows
   end
   match "login" => "user_sessions#new"
